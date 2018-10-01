@@ -89,19 +89,30 @@ public class DEAmitFileInput {
         return new ArrayList<>(Arrays.asList(superfinalSplit));
 
     }
+    /**
+     * Die Methode geht die übergebene ArrayList durch und führt für jede
+     * Zeile die korrekte Funktion aus.
+     * 
+     * 
+     * 
+     * @param list 
+     */
+    
+    
+    
 
-    public void MethodeWählen(ArrayList list) {
+    public void MethodenWählen(ArrayList list) {
         for (int i = 0; i < 4; i++) {
             switch (i) {
-                case 0:
+                case 0:BananaSplit(""+list.get(0));
                     break;
-                case 1:
+                case 1:BananaSplit(""+list.get(1));
                     break;
                 case 2:
                     break;
                 case 3:
                     break;
-                case 4:
+                case 4:BananaSplit(""+list.get(4));
                     break;
             }
 
