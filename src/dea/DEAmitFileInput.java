@@ -27,7 +27,7 @@ public class DEAmitFileInput {
     }
 
     public DEAmitFileInput(String filename) {
-        
+
     }
 
     /**
@@ -52,12 +52,13 @@ public class DEAmitFileInput {
             return null;
         }
     }
-    
-    public boolean wortAbarbeiten(String wort){
+
+    public boolean wortAbarbeiten(String wort) {
         return false;
     }
-    public void zustandWechseln(char c){
-        
+
+    public void zustandWechseln(char c) {
+
     }
 
     public static void main(String args[]) {
@@ -71,36 +72,41 @@ public class DEAmitFileInput {
             
         }*/
     }
-    
+
     /**
      * Diese Funktion kann die Parameter Q,Sigma und F einlesen und in einer
      * ArrayList zurückgeben.
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * @param Zeile
-     * @return 
+     * @return
      */
-    
-    
-    
-    
-    
-    public ArrayList BananaSplit(String Zeile){
+    public ArrayList BananaSplit(String Zeile) {
         String[] gesplitted = Zeile.split("\\[");
         String[] finalSplit = gesplitted[1].split("\\]");
         String[] superfinalSplit = finalSplit[0].split("\\,");
         return new ArrayList<>(Arrays.asList(superfinalSplit));
-               
-               
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
     }
+
+    public void MethodeWählen(ArrayList list) {
+        for (int i = 0; i < 4; i++) {
+            switch (i) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+
+        }
+
+    }
+
 }
