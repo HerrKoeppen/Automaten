@@ -61,6 +61,46 @@ public class DEAmitFileInput {
     }
 
     public static void main(String args[]) {
+        /*DEAmitFileInput d = new DEAmitFileInput();
+        ArrayList<String> Ergebnis = d.BananaSplit("Sigma = [a,b]");
+        for(int i = 0;i<Ergebnis.size();i++){
+            System.out.println(Ergebnis.get(i));
+            
+            
+            
+            
+        }*/
+    }
+    
+    /**
+     * Diese Funktion kann die Parameter Q,Sigma und F einlesen und in einer
+     * ArrayList zurückgeben.
+     * 
+     * 
+     * 
+     * @param Zeile
+     * @return 
+     */
+    
+    
+    
+    
+    
+    public ArrayList BananaSplit(String Zeile){
+        String[] gesplitted = Zeile.split("\\[");
+        String[] finalSplit = gesplitted[1].split("\\]");
+        String[] superfinalSplit = finalSplit[0].split("\\,");
+        return new ArrayList<>(Arrays.asList(superfinalSplit));
+               
+               
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
 }
