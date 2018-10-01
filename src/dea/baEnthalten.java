@@ -16,50 +16,9 @@ public class baEnthalten {
     private int zustand;
 
     public void zustandWechseln(char zeichen) {
-        switch (zustand) {
-            case 0: {
-                switch (zeichen) {
-                    case 'a': {
-                        zustand = 0;
-                    }
-                    break;
-                    case 'b': {
-                        zustand = 1;
-                    }
-                    break;
-                }
-            }
-            break;
-            case 1: {
-                switch (zeichen) {
-                    case 'a': {
-                        zustand = 2;
-                    }
-                    break;
-                    case 'b': {
-                        zustand = 1;
-                    }
-                    break;
+        
 
-                }
-            }
-            break;
-            case 2: {
-                switch (zeichen) {
-                    case 'a': {
-                        zustand = 2;
-                    }
-                    break;
-                    case 'b': {
-                        zustand = 2;
-                    }
-                    break;
-
-                }
-            }
-            break;
-
-        }
+        
     }
 
     public boolean wortUntersuchen(String text) {
