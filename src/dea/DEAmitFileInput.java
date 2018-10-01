@@ -71,6 +71,18 @@ public class DEAmitFileInput {
             
             
         }*/
+        DEAmitFileInput d = new DEAmitFileInput();
+        ArrayList<String> DateiInArray = d.readFile("TEstDEA.txt");
+        d.MethodenWählen(DateiInArray);
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -114,6 +126,7 @@ public class DEAmitFileInput {
                     break;
                 case 4:BananaSplit(""+list.get(4));
                     break;
+                default:break;
             }
 
         }
