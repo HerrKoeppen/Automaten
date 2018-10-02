@@ -234,66 +234,64 @@ public class DEAmitFileInput {
         }
 
     }
+
     /**
-     * Diese Methode...
-     * Sie nimmt die Delta-Zeile entgegen und gibt eine ArrayList mit Hashtables
-     * zurück. In der ArrayList symbolisiert jeder index einen Zustand(i:0 -> q1]
-     * .die Hashtable gibt nun an was passieren soll wenn bestimmte Keys
-     * (Transitionen) auf Grundlage der erlaubten Buchstaben des Aplhabets) 
-     * eingegeben werden.
-     * -ACHTUNG-ATTENTION-ATTENTION-ATTENZIONE
-     * DIESE METHODE DARF ERST AUSGEFÜHRT WERDEN WENN DIE ZUSTEANDE BEREITS
-     * DEFENIERT SIND!
-     * 
-     * 
-     * 
-     * 
-     * 
+     * Diese Methode... Sie nimmt die Delta-Zeile entgegen und gibt eine
+     * ArrayList mit Hashtables zurück. In der ArrayList symbolisiert jeder
+     * index einen Zustand(i:0 -> q1] .die Hashtable gibt nun an was passieren
+     * soll wenn bestimmte Keys (Transitionen) auf Grundlage der erlaubten
+     * Buchstaben des Aplhabets) eingegeben werden.
+     * -ACHTUNG-ATTENTION-ATTENTION-ATTENZIONE DIESE METHODE DARF ERST
+     * AUSGEFÜHRT WERDEN WENN DIE ZUSTEANDE BEREITS DEFENIERT SIND!
+     *
+     *
+     *
+     *
+     *
      * @param zeile
-     * @return 
+     * @return
      */
 
     public ArrayList<Hashtable> DeltaDefenieren(String zeile) {
-        try{
-        ArrayList<String> zustaende = this.getZustaende();
-        ArrayList<Hashtable> allehashtable = new ArrayList<Hashtable>();
-        //Für jeden Zustand wird eine neue Hashtable angelegt.
-        for (String zustand : zustaende) {
-            allehashtable.add(new Hashtable<String, Integer>());
-        }
+        try {
+            ArrayList<String> zustaende = this.getZustaende();
+            ArrayList<Hashtable> allehashtable = new ArrayList<Hashtable>();
+            //Für jeden Zustand wird eine neue Hashtable angelegt.
+            for (String zustand : zustaende) {
+                allehashtable.add(new Hashtable<String, Integer>());
+            }
 
-        String[] gesplitted = zeile.split("\\[");
-        gesplitted = gesplitted[1].split("\\]");
-        gesplitted = gesplitted[0].split("\\;");
-        for (String transition : gesplitted) {
-            String[] stringsplit = transition.split("->");
-            String[] klammersplit = stringsplit[0].split("\\(");
-            klammersplit = klammersplit[1].split("\\)");
-            klammersplit = klammersplit[0].split("\\,");
+            String[] gesplitted = zeile.split("\\[");
+            gesplitted = gesplitted[1].split("\\]");
+            gesplitted = gesplitted[0].split("\\;");
+            for (String transition : gesplitted) {
+                String[] stringsplit = transition.split("->");
+                String[] klammersplit = stringsplit[0].split("\\(");
+                klammersplit = klammersplit[1].split("\\)");
+                klammersplit = klammersplit[0].split("\\,");
 
-            for (int i = 0; i < zustaende.size(); i++) {
-                if (zustaende.get(i).equalsIgnoreCase(klammersplit[0])) {
+                for (int i = 0; i < zustaende.size(); i++) {
+                    if (zustaende.get(i).equalsIgnoreCase(klammersplit[0])) {
 
-                    System.out.println("stringsplit" + Arrays.toString(stringsplit));//Just Debugging
-                    System.out.println("klammersplit:" + Arrays.toString(klammersplit));//Just Debugging
-                    allehashtable.get(i).put(klammersplit[1], stringsplit[1]);
+                        System.out.println("stringsplit" + Arrays.toString(stringsplit));//Just Debugging
+                        System.out.println("klammersplit:" + Arrays.toString(klammersplit));//Just Debugging
+                        allehashtable.get(i).put(klammersplit[1], stringsplit[1]);
+
+                    }
 
                 }
 
             }
 
+            return allehashtable;
+        } catch (Exception e) {
+            System.out.println("\u001B[31mDie Methode DeltaDefenieren benötigt die "
+                    + "Zustände des DEA.Bitte erst BananaSplit auf die Zustände "
+                    + "anwenden");
+
+            return null;
         }
 
-        return allehashtable;
-        }catch(Exception e){
-            System.out.println("\u001B[31mDie Methode DeltaDefenieren benötigt die "+ 
-                  "Zustände des DEA.Bitte erst BananaSplit auf die Zustände "
-                    + "anwenden");
-            
-            
-          return null;  
-        }
-   
     }
 
     public static void main(String args[]) {
@@ -308,7 +306,7 @@ public class DEAmitFileInput {
         }*/
         DEAmitFileInput d = new DEAmitFileInput();
         ArrayList<String> DateiInArray = d.readFile("TestDEA.txt");
-        
+        d.MethodenWählen(DateiInArray);
         System.out.println(d.DeltaDefenieren(DateiInArray.get(2)));
 
     }
