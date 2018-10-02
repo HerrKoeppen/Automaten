@@ -72,8 +72,8 @@ public class DEAmitFileInput {
      */
     public ArrayList BananaSplit(String Zeile) {
         String[] gesplitted = Zeile.split("\\[");
-        String[] finalSplit = gesplitted[1].split("\\]");
         
+        String[] finalSplit = gesplitted[1].split("\\]");
         String[] superfinalSplit = finalSplit[0].split("\\,");
         return new ArrayList<>(Arrays.asList(superfinalSplit));
 
@@ -88,7 +88,7 @@ public class DEAmitFileInput {
      * @param list
      */
     public void MethodenWählen(ArrayList list) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i <= 4; i++) {
             switch (i) {
                 case 0:
                     this.setZustaende(BananaSplit("" + list.get(0)));
@@ -102,7 +102,7 @@ public class DEAmitFileInput {
                     this.setQ0(this.StartZustandDefenieren("" + list.get(3)));
                     break;
                 case 4:
-                    this.setEndzustaende(BananaSplit("" + list.get(4)));
+                    this.endzustaende = BananaSplit("" + list.get(4));
                     break;
                 default:
                     break;
@@ -226,17 +226,16 @@ public class DEAmitFileInput {
         //Delta fehlt(Datentyp unklar).
         
         System.out.println("Q0:" + this.getQ0());
-        /*
-        Hier sollten eigentlich die Endzustaende ausgegeben werden. Java wirft
-        aber immer eine NullPointerException.
+        
+        
         
         System.out.println("Endzustände:");
         List = this.getEndzustaende();
         for (int i = 0; i < List.size(); i++) {
             System.out.println(List.get(i));
         }
-        */
-
+        
+        
 
     }
 
@@ -251,10 +250,13 @@ public class DEAmitFileInput {
             
         }*/
         DEAmitFileInput d = new DEAmitFileInput();
-        ArrayList<String> DateiInArray = d.readFile("TEstDEA.txt");
+        ArrayList<String> DateiInArray = d.readFile("TestDEA.txt");
         d.MethodenWählen(DateiInArray);
-        
         d.ObjektToString();
+        
+        
+        
+        
 
     }
 
