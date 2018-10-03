@@ -25,12 +25,17 @@ import java.util.ArrayList;
  */
 public class Stack {
 
-    private final ArrayList<String> stapel;
-    private final int indexVorderstesElement;
+    private ArrayList<String> stapel;
+    private int indexVorderstesElement;
 
     public Stack() {
         stapel = new ArrayList();
         indexVorderstesElement = 0;
+
+    }
+
+    public static void main(String[] args) {
+
     }
 
     /**
@@ -39,6 +44,13 @@ public class Stack {
      * @param s das einzufügende Element
      */
     public void push(String s) {
+        ArrayList<String> nstapel = new ArrayList<String>();
+        nstapel.add(s);
+        for (String e : this.stapel) {
+            nstapel.add(e);
+
+        }
+        this.stapel = nstapel;
 
     }
 
@@ -49,7 +61,11 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String pop() {
-        return null;
+        String s = this.stapel.get(indexVorderstesElement);
+        this.stapel.set(indexVorderstesElement, null);
+        this.indexVorderstesElement = this.indexVorderstesElement + 1;
+
+        return s;
     }
 
     /**
@@ -60,7 +76,7 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String top() {
-        return null;
+        return this.stapel.get(indexVorderstesElement);
     }
 
     /**
@@ -69,7 +85,7 @@ public class Stack {
      * @return true, wenn der Stapel kein Element enthält, sonst false
      */
     public boolean isEmpty() {
-        return false;
+        return true;
     }
 
 }
