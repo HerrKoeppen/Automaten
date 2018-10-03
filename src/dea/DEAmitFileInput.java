@@ -19,7 +19,7 @@ public class DEAmitFileInput {
 
     private ArrayList<String> zustaende;
     private ArrayList<String> alphabet;
-    private String[][] delta;
+    private ArrayList<Hashtable> delta;
     private String q0;
     private ArrayList<String> endzustaende;
     private String aktuellerZustand;
@@ -97,7 +97,8 @@ public class DEAmitFileInput {
                 case 1:
                     this.setAlphabet(BananaSplit("" + list.get(1)));
                     break;
-                case 2://Delta-Methode
+                case 2:
+                    this.setDelta(this.DeltaDefenieren("" + list.get(2)));
                     break;
                 case 3:
                     this.setQ0(this.StartZustandDefenieren("" + list.get(3)));
@@ -139,20 +140,6 @@ public class DEAmitFileInput {
      */
     public void setAlphabet(ArrayList<String> alphabet) {
         this.alphabet = alphabet;
-    }
-
-    /**
-     * @return the delta
-     */
-    public String[][] getDelta() {
-        return delta;
-    }
-
-    /**
-     * @param delta the delta to set
-     */
-    public void setDelta(String[][] delta) {
-        this.delta = delta;
     }
 
     /**
@@ -198,6 +185,20 @@ public class DEAmitFileInput {
     }
 
     /**
+     * @return the delta
+     */
+    public ArrayList<Hashtable> getDelta() {
+        return delta;
+    }
+
+    /**
+     * @param delta the delta to set
+     */
+    public void setDelta(ArrayList<Hashtable> delta) {
+        this.delta = delta;
+    }
+
+    /**
      *
      * Ließt eine Zeile und gibt dann den Startzustand zurück.
      *
@@ -223,8 +224,14 @@ public class DEAmitFileInput {
         for (int i = 0; i < List.size(); i++) {
             System.out.println(List.get(i));
         }
-
-        //Delta fehlt(Datentyp unklar).
+        
+        System.out.println("Delta:");
+        ArrayList<Hashtable> ListDelta = this.getDelta();
+        for (int i = 0; i < ListDelta.size(); i++) {
+            System.out.println(ListDelta.get(i));
+        }
+        
+        
         System.out.println("Q0:" + this.getQ0());
 
         System.out.println("Endzustände:");
@@ -244,14 +251,13 @@ public class DEAmitFileInput {
      * -ACHTUNG-ATTENTION-ATTENTION-ATTENZIONE DIESE METHODE DARF ERST
      * AUSGEFÜHRT WERDEN WENN DIE ZUSTEANDE BEREITS DEFENIERT SIND!
      *
-     *
-     *
+     * Korrekte Syntax der Teile:delta = [(q1,a) ->q2;(q1,b)
+     * ->q3;(q2,a)->q2;(q2,b)->q2;(q3,a)->q3;(q3,b)->q3]
      *
      *
      * @param zeile
      * @return
      */
-
     public ArrayList<Hashtable> DeltaDefenieren(String zeile) {
         try {
             ArrayList<String> zustaende = this.getZustaende();
@@ -307,7 +313,7 @@ public class DEAmitFileInput {
         DEAmitFileInput d = new DEAmitFileInput();
         ArrayList<String> DateiInArray = d.readFile("TestDEA.txt");
         d.MethodenWählen(DateiInArray);
-        System.out.println(d.DeltaDefenieren(DateiInArray.get(2)));
+        d.ObjektToString();
 
     }
 
