@@ -29,8 +29,6 @@ public class Stack {
     private int indexVorderstesElement;
 
     public Stack() {
-        stapel = new ArrayList();
-        indexVorderstesElement = 0;
 
     }
 
@@ -61,11 +59,18 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String pop() {
-        String s = this.stapel.get(indexVorderstesElement);
-        this.stapel.set(indexVorderstesElement, null);
-        this.indexVorderstesElement = this.indexVorderstesElement + 1;
+        try {
+            String s = this.stapel.get(indexVorderstesElement);
+            this.stapel.set(indexVorderstesElement, null);
+            this.indexVorderstesElement = this.indexVorderstesElement + 1;
 
-        return s;
+            return s;
+        } catch (Exception e) {
+            System.out.println("\u001B[31mDie ArrayList ist zu Ende. Keine weiteren "
+                    + "Objekte gefunden!(return: null)(Methode:pop)");
+
+        }
+        return null;
     }
 
     /**
@@ -76,7 +81,14 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String top() {
-        return this.stapel.get(indexVorderstesElement);
+        try {
+            return this.stapel.get(indexVorderstesElement);
+        } catch (Exception e) {
+            System.out.println("\u001B[31mDer index des vordersten Elements befindet sich"
+                    + "nicht in der ArrayList!(return:null)(Methode:top)");
+
+        }
+        return null;
     }
 
     /**
@@ -85,7 +97,12 @@ public class Stack {
      * @return true, wenn der Stapel kein Element enthält, sonst false
      */
     public boolean isEmpty() {
-        return true;
+        if (this.top() == null) {
+            return true;
+
+        }
+
+        return false;
     }
 
 }
