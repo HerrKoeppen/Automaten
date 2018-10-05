@@ -54,13 +54,62 @@ public class DEAmitFileInput {
         }
     }
 
+    /**
+     *
+     * Methode funktioneirt nur mit einzelnen Zeichen als erlaubte Eingabewerte.
+     *
+     * @param wort
+     * @return
+     */
     public boolean wortAbarbeiten(String wort) {
+        this.aktuellerZustand = this.q0;
+
+        for (int i = 0; i < wort.toCharArray().length; i++) {
+            char c = wort.toCharArray()[i];
+            //Wenn Buchstabe nicht im Alphabet vorkommt
+            if (!this.getAlphabet().contains((Character.toString(c)))) {
+                System.out.println("\u001B[31m Dieses Zeichen kommt nicht im Alphabet vor.Wort gehört nicht zur Sprache");
+                return false;
+            }
+            char t = this.aktuellerZustand.charAt(1);
+            int zustandsindex = Integer.parseInt(Character.toString(t)) - 1;
+            System.out.println("Zustandsindex:" + zustandsindex);
+            try {
+                if (this.delta.get(zustandsindex).get(Character.toString(c)) != null) {
+                    //Wenn letzter Buchstabe erreicht.
+                    //FEHLER
+                    if (i == wort.toCharArray().length - 1) {
+
+                        if (this.endzustaende.contains(this.aktuellerZustand)) {
+                            System.out.println("\u001B[32mWort gehört zur Sprache!");
+                            return true;
+
+                        } else {
+                            System.out.println("\u001B[31mWort gehört nicht zur Sprache!");
+                            
+                            return false;
+
+                        }
+
+                    }
+
+                    //System.out.println("String-Character:" + Character.toString(c));
+                    //System.out.println("Transition:" + this.delta.get(zustandsindex).get(Character.toString(c)));
+                    this.aktuellerZustand = (String) this.delta.get(zustandsindex).get(Character.toString(c));
+                }
+
+            } catch (Exception e) {
+                System.out.println("\u001B[31m Wort gehört nicht zur Sprache");
+                return true;
+
+            }
+
+        }
+
         return false;
     }
 
-    public void zustandWechseln(char c) {
 
-    }
 
     /**
      * Diese Funktion kann die Parameter Q,Sigma und F einlesen und in einer
@@ -224,14 +273,13 @@ public class DEAmitFileInput {
         for (int i = 0; i < List.size(); i++) {
             System.out.println(List.get(i));
         }
-        
+
         System.out.println("Delta:");
         ArrayList<Hashtable> ListDelta = this.getDelta();
         for (int i = 0; i < ListDelta.size(); i++) {
             System.out.println(ListDelta.get(i));
         }
-        
-        
+
         System.out.println("Q0:" + this.getQ0());
 
         System.out.println("Endzustände:");
@@ -279,8 +327,6 @@ public class DEAmitFileInput {
                 for (int i = 0; i < zustaende.size(); i++) {
                     if (zustaende.get(i).equalsIgnoreCase(klammersplit[0])) {
 
-                        System.out.println("stringsplit" + Arrays.toString(stringsplit));//Just Debugging
-                        System.out.println("klammersplit:" + Arrays.toString(klammersplit));//Just Debugging
                         allehashtable.get(i).put(klammersplit[1], stringsplit[1]);
 
                     }
@@ -315,6 +361,24 @@ public class DEAmitFileInput {
         d.MethodenWählen(DateiInArray);
         d.ObjektToString();
 
+        d.wortAbarbeiten("ba");
+
     }
 
+    /*
+    Korrekte Sytnax der gelesenen Datei:
+    Q = [q1,q2,q3]
+    Sigma = [a,b]
+    delta = [(q1,a) ->q2;(q1,b) ->q3;(q2,a)->q2;(q2,b)->q2;(q3,a)->q3;(q3,b)->q3]
+    q0 = q1
+    F = [q2]
+    
+    
+    
+    
+    
+    
+    
+    
+     */
 }
