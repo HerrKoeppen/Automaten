@@ -32,9 +32,7 @@ public class Stack {
 
     }
 
-    public static void main(String[] args) {
-
-    }
+    
 
     /**
      * Fügt das Element s in den Stapel ein
@@ -42,14 +40,7 @@ public class Stack {
      * @param s das einzufügende Element
      */
     public void push(String s) {
-        ArrayList<String> nstapel = new ArrayList<String>();
-        nstapel.add(s);
-        for (String e : this.stapel) {
-            nstapel.add(e);
-
-        }
-        this.stapel = nstapel;
-
+        
     }
 
     /**
@@ -59,17 +50,7 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String pop() {
-        try {
-            String s = this.stapel.get(indexVorderstesElement);
-            this.stapel.set(indexVorderstesElement, null);
-            this.indexVorderstesElement = this.indexVorderstesElement + 1;
-
-            return s;
-        } catch (Exception e) {
-            System.out.println("\u001B[31mDie ArrayList ist zu Ende. Keine weiteren "
-                    + "Objekte gefunden!(return: null)(Methode:pop)");
-
-        }
+        
         return null;
     }
 
@@ -81,13 +62,7 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String top() {
-        try {
-            return this.stapel.get(indexVorderstesElement);
-        } catch (Exception e) {
-            System.out.println("\u001B[31mDer index des vordersten Elements befindet sich"
-                    + "nicht in der ArrayList!(return:null)(Methode:top)");
-
-        }
+       
         return null;
     }
 
@@ -97,10 +72,7 @@ public class Stack {
      * @return true, wenn der Stapel kein Element enthält, sonst false
      */
     public boolean isEmpty() {
-        if (this.top() == null) {
-            return true;
-
-        }
+       
 
         return false;
     }
