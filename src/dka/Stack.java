@@ -76,9 +76,9 @@ public class Stack {
      * @return true, wenn der Stapel kein Element enthält, sonst false
      */
     public boolean isEmpty() {
-       
+       return stapel.isEmpty();
 
-        return false;
+
     }
 
 }
