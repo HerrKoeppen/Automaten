@@ -26,8 +26,7 @@ import java.util.ArrayList;
 public class Stack {
 
     private ArrayList<String> stapel;
-    private int indexVorderstesElement;
-
+    private int indexVorderstesElement = -1;
     public Stack() {
 
     }
@@ -40,7 +39,8 @@ public class Stack {
      * @param s das einzufügende Element
      */
     public void push(String s) {
-        
+        stapel.add(s);
+        indexVorderstesElement++;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String pop() {
-        
+
         return null;
     }
 
@@ -62,9 +62,13 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String top() {
+        
+        if(stapel.isEmpty())
+            return null;
+        
+        return stapel.get(indexVorderstesElement);
        
-        return null;
-    }
+         }
 
     /**
      * Zeigt an, ob der Stapel leer ist.
@@ -72,9 +76,9 @@ public class Stack {
      * @return true, wenn der Stapel kein Element enthält, sonst false
      */
     public boolean isEmpty() {
-       
+       return stapel.isEmpty();
 
-        return false;
+
     }
 
 }
