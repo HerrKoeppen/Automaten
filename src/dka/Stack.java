@@ -40,6 +40,9 @@ public class Stack {
      * @param s das einzufügende Element
      */
     public void push(String s) {
+        indexVorderstesElement++;
+        stapel.add(s);
+        
         
     }
 
@@ -50,7 +53,10 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String pop() {
-        
+        if(indexVorderstesElement > 0){
+            String el =stapel.remove(indexVorderstesElement - 1);
+            indexVorderstesElement--;
+        }
         return null;
     }
 
@@ -62,7 +68,10 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String top() {
-       
+        if(indexVorderstesElement > 0){
+            String el =stapel.get(indexVorderstesElement - 1);
+            indexVorderstesElement--; 
+        }
         return null;
     }
 
