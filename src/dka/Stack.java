@@ -65,12 +65,13 @@ public class Stack {
      * Elemente im Stapel gibt
      */
     public String top() {
-        if(indexVorderstesElement > 0){
-            String el =stapel.get(indexVorderstesElement - 1);
-            indexVorderstesElement--; 
-        }
-        return null;
-    }
+       
+        if(stapel.isEmpty())
+             return null;
+    
+        return stapel.get(indexVorderstesElement);
+
+         }
 
     /**
      * Zeigt an, ob der Stapel leer ist.
